@@ -1,10 +1,10 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
 
-import Page1 from './source/Page1';
-import Page2 from './source/Page2';
-import Page3 from './source/Page3';
+import Page1 from "./source/Page1";
+import Page2 from "./source/Page2";
+import Page3 from "./source/Page3";
 
 const Stack = createStackNavigator();
 
