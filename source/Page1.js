@@ -21,6 +21,7 @@ export default function Page1({ navigation })
         setCurrentTheme("light"); // Update current theme in state
     }
 
+    //hello
     function ToOtherPage(number)
     {
         if (number === 2)

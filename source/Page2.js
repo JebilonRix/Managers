@@ -40,5 +40,3 @@ export default function Page2({ navigation })
         </View>
     );
 }
-
-

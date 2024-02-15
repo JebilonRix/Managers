@@ -18,6 +18,8 @@
         "camelcase": 1,
         "no-undef": 0,
         "quotes": ["warn", "double"],
-        "brace-style": ["warn", "allman", { "allowSingleLine": false }]
+        "brace-style": ["warn", "allman", { "allowSingleLine": false }],
+        "no-multiple-empty-lines": ["warn", { "max": 1 ,"maxEOF": 0 }],
+        "no-trailing-spaces": "warn"
     }
 }
