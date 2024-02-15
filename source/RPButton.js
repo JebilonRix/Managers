@@ -1,18 +1,18 @@
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import React from "react";
 
 // My components
-import ThemeManager from './ThemeManagerClass';
+import ThemeManager from "./ThemeManagerClass";
 
 export default function RPButton({ buttonStyle, height, onPress, text, textStyle, width })
 {
     function ButtonProps()
     {
         let props = StyleSheet.create({
-            backgroundColor: ThemeManager.GetColorValue('buttonbackground'),
-            borderColor: ThemeManager.GetColorValue('buttonborder'),
-            borderWidth: ThemeManager.GetSizeValue('buttonborder'),
-            height: height || 100,
+            backgroundColor: ThemeManager.GetColorValue("buttonbackground"),
+            borderColor: ThemeManager.GetColorValue("buttonborder"),
+            borderWidth: ThemeManager.GetSizeValue("buttonborder"),
+            height: height || 50,
             width: width || 100,
         });
 
@@ -28,9 +28,9 @@ export default function RPButton({ buttonStyle, height, onPress, text, textStyle
     function TextProps()
     {
         let props = StyleSheet.create({
-            fontSize: ThemeManager.GetSizeValue('fontsize'),
-            color: ThemeManager.GetColorValue('buttontextcolor'),
-            height: '100%',
+            fontSize: ThemeManager.GetSizeValue("fontsize"),
+            color: ThemeManager.GetColorValue("buttontextcolor"),
+            height: "100%",
         });
 
         // Merging props and buttonStyle

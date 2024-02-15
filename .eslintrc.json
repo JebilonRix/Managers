@@ -16,6 +16,8 @@
         "no-duplicate-case": 1,
         "no-duplicate-imports": 1,
         "camelcase": 1,
-        "no-undef": 0
+        "no-undef": 0,
+        "quotes": ["warn", "double"],
+        "brace-style": ["warn", "allman", { "allowSingleLine": false }]
     }
 }

@@ -1,24 +1,24 @@
-import { View, Text } from 'react-native';
-import React from 'react';
+import { View } from "react-native";
+import React from "react";
 
-import RPButton from './RPButton';
-import ThemeManager from './ThemeManagerClass';
+import RPButton from "./RPButton";
+import ThemeManager from "./ThemeManagerClass";
 
 export default function Page2({ navigation })
 {
     function Test()
     {
-        console.log('test');
-        navigation.navigate('Page1');
+        console.log("test");
+        navigation.navigate("Page1");
     }
 
     return (
         <View style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: '100%',
-            backgroundColor: ThemeManager.GetColorValue('background'),
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%",
+            backgroundColor: ThemeManager.GetColorValue("background"),
         }}>
             <RPButton
                 onPress={Test}
@@ -26,9 +26,9 @@ export default function Page2({ navigation })
                 height={100}
                 text="Test"
                 textStyle={{
-                    textAlign: 'center',
-                    textAlignVertical: 'center',
-                    fontWeight: 'bold',
+                    textAlign: "center",
+                    textAlignVertical: "center",
+                    fontWeight: "bold",
                 }}
                 buttonStyle={
                     {
