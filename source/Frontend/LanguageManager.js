@@ -1,15 +1,15 @@
 class LanguageManagerClass
 {
-    static instance = null;
+    static _instance = null;
 
     constructor()
     {
-        if (this.instance)
+        if (LanguageManagerClass._instance)
         {
-            return this.instance;
+            return LanguageManagerClass._instance;
         }
 
-        this.instance = this;
+        LanguageManagerClass._instance = this; // Initialize the instance
         this._currentLanguageName = "turkish"; // Set the default language name
 
         // Define the language here. Note: names must be lower case.

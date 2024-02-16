@@ -2,17 +2,16 @@ import { Dimensions } from "react-native";
 
 class ThemeManagerClass
 {
-    static instance = null;
+    static _instance = null;
 
     constructor()
     {
-        // return instance which is generated.
-        if (this._instance)
+        if (ThemeManagerClass._instance)
         {
-            return this._instance;
+            return ThemeManagerClass._instance;
         }
 
-        this._instance = this; //Set the class
+        ThemeManagerClass._instance = this; // Initialize the instance
         this._currentThemeName = "light"; // Set the default theme name
 
         // Define the themes here. Note: names must be lower case.
@@ -36,11 +35,12 @@ class ThemeManagerClass
                     { name: "buttontextcolor", value: "yellow" },
                     { name: "listbackground", value: "white" },
                     { name: "listborder", value: "black" },
-                    { name: "listfontcolor", value: "blue" },
-                    { name: "listheaderfontcolor", value: "black" },
+                    { name: "listfontcolor", value: "yellow" },
+                    { name: "listheaderfontcolor", value: "yellow" },
                 ]],
         ]);
 
+        // Get values of dimensions
         let height = Dimensions.get("window").height;
         let width = Dimensions.get("window").width;
 
