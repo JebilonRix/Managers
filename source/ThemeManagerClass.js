@@ -23,6 +23,10 @@ class ThemeManagerClass
                     { name: "buttonbackground", value: "yellow" },
                     { name: "buttonborder", value: "black" },
                     { name: "buttontextcolor", value: "red" },
+                    { name: "listbackground", value: "white" },
+                    { name: "listborder", value: "black" },
+                    { name: "listfontcolor", value: "blue" },
+                    { name: "listheaderfontcolor", value: "black" },
                 ]],
             ["dark",
                 [
@@ -30,17 +34,28 @@ class ThemeManagerClass
                     { name: "buttonbackground", value: "red" },
                     { name: "buttonborder", value: "black" },
                     { name: "buttontextcolor", value: "yellow" },
+                    { name: "listbackground", value: "white" },
+                    { name: "listborder", value: "black" },
+                    { name: "listfontcolor", value: "blue" },
+                    { name: "listheaderfontcolor", value: "black" },
                 ]],
         ]);
 
         let height = Dimensions.get("window").height;
         let width = Dimensions.get("window").width;
 
+        let value1 = Math.round(height * 0.0012);
+        let value2 = Math.round(width * 0.025);
+        let value3 = Math.round(width * 0.033);
+
         // Define the size informations. Note: names must be lower case.
         this._sizes = [
-            { name: "buttonborder", value: Math.round(height * 0.0012) },
-            { name: "fontsize", value: Math.round(width * 0.025) },
-            { name: "title", value: Math.round(width * 0.033) },
+            { name: "buttonborder", value: value1 },
+            { name: "fontsize", value: value2 },
+            { name: "listborder", value: value1 },
+            { name: "listheader", value: value3 },
+            { name: "listfontsize", value: value2 },
+            { name: "title", value: value3 },
         ];
     }
 

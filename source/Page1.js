@@ -2,7 +2,7 @@ import { View } from "react-native";
 import React, { useState } from "react";
 
 // My components
-import RPButton from "./RPButton";
+import RPButton from "./componets/RPButton";
 import ThemeManager from "./ThemeManagerClass";
 
 export default function Page1({ navigation })

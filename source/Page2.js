@@ -1,14 +1,19 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 
-import RPButton from "./RPButton";
+import RPButton from "./componets/RPButton";
 import ThemeManager from "./ThemeManagerClass";
+import RPList from "./componets/RPList";
 
 export default function Page2({ navigation })
 {
+    const items = [
+        { value: "Hello" },
+        { value: "Hello2" },
+    ];
+
     function Test()
     {
-        console.log("test");
         navigation.navigate("Page1");
     }
 
@@ -37,6 +42,16 @@ export default function Page2({ navigation })
                 }
             />
 
+            <RPList
+                data={items}
+                emptyListText={"Hello"}
+                headerListText={"Header"}
+                listStyle={{ width: 250 }}
+            // listTextStyle={{
+            //     fontWeight: "bold",
+            //     textAlign: "left"
+            // }}
+            />
         </View>
     );
 }

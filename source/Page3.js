@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-import RPButton from "./RPButton";
+import RPButton from "./componets/RPButton";
 import ThemeManager from "./ThemeManagerClass";
 
 export default function Page3({ navigation })
