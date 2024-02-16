@@ -1,0 +1,17 @@
+// How to use theme manager
+
+//imports
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
+    
+//use useState hook
+const [currentTheme, setCurrentTheme] = useState("");
+
+//use useFocusEffect hook
+useFocusEffect(useCallback(() =>
+{
+    if (currentTheme !== ThemeManager.GetThemeName())
+    {
+        setCurrentTheme(ThemeManager.GetThemeName());
+    }
+}, []));

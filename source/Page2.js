@@ -1,9 +1,10 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { View } from "react-native";
+import React, { useCallback, useState } from "react";
 
 import RPButton from "./componets/RPButton";
-import ThemeManager from "./ThemeManagerClass";
 import RPList from "./componets/RPList";
+import ThemeManager from "./Frontend/ThemeManagerClass";
 
 export default function Page2({ navigation })
 {
@@ -11,6 +12,16 @@ export default function Page2({ navigation })
         { value: "Hello" },
         { value: "Hello2" },
     ];
+
+    const [currentTheme, setCurrentTheme] = useState("light");
+
+    useFocusEffect(useCallback(() =>
+    {
+        if (currentTheme !== ThemeManager.GetThemeName())
+        {
+            setCurrentTheme(ThemeManager.GetThemeName());
+        }
+    }, []));
 
     function Test()
     {

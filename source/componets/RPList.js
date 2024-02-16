@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, Text } from "react-native";
 import React from "react";
 
 // My components
-import ThemeManager from "../ThemeManagerClass";
+import ThemeManager from "../Frontend/ThemeManagerClass";
 
 export default function RPList({ data, emptyListText, headerListText, listTextStyle, listStyle })
 {
@@ -69,7 +69,7 @@ export default function RPList({ data, emptyListText, headerListText, listTextSt
             ...listTextStyle,
         };
 
-        console.log("🚀 ~ mergedProps:", mergedProps);
+        // console.log("🚀 ~ mergedProps:", mergedProps);
 
         return (
             <Text style={mergedProps} >

@@ -1,28 +1,37 @@
+import { useFocusEffect } from "@react-navigation/native";
 import { View } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 // My components
 import RPButton from "./componets/RPButton";
-import ThemeManager from "./ThemeManagerClass";
+import ThemeManager from "./Frontend/ThemeManagerClass";
+import LanguageManager from "./Frontend/LanguageManager";
 
 export default function Page1({ navigation })
 {
-    const [currentTheme, setCurrentTheme] = useState("light");
+    const [currentTheme, setCurrentTheme] = useState("");
+    const [currentLanguage, setCurrentLanguage] = useState("");
 
-    function ChangeThemeDark()
+    useFocusEffect(useCallback(() =>
     {
-        ThemeManager.SetThemeName("dark");
-        setCurrentTheme("dark"); // Update current theme in state
+        if (currentTheme !== ThemeManager.GetThemeName())
+        {
+            setCurrentTheme(ThemeManager.GetThemeName());
+        }
+
+        if (currentLanguage !== LanguageManager.GetLanguageName())
+        {
+            setCurrentLanguage(LanguageManager.GetLanguageName());
+        }
+    }, []));
+
+    function ChangeTheme(themeName)
+    {
+        ThemeManager.SetThemeName(themeName);
+        setCurrentTheme(themeName); // Update current theme in state
     }
 
-    function ChangeThemeLight()
-    {
-        ThemeManager.SetThemeName("light");
-        setCurrentTheme("light"); // Update current theme in state
-    }
-
-    //hello
-    function ToOtherPage(number)
+    function ToPage(number)
     {
         if (number === 2)
         {
@@ -34,6 +43,12 @@ export default function Page1({ navigation })
         }
     }
 
+    function SetLanguage(languageName)
+    {
+        LanguageManager.SetLanguageName(languageName);
+        setCurrentLanguage(languageName); // Update current theme in state
+    }
+
     return (
         <View style={{
             alignItems: "center",
@@ -43,7 +58,7 @@ export default function Page1({ navigation })
             backgroundColor: ThemeManager.GetColorValue("background"),
         }}>
             <RPButton
-                onPress={ChangeThemeDark}
+                onPress={(() => ChangeTheme("dark"))}
                 width={100}
                 height={100}
                 text="Change Theme Dark"
@@ -52,14 +67,10 @@ export default function Page1({ navigation })
                     textAlignVertical: "center",
                     fontWeight: "bold",
                 }}
-                buttonStyle={
-                    {
-                        borderRadius: 15,
-                    }
-                }
+                buttonStyle={{ borderRadius: 15, }}
             />
             <RPButton
-                onPress={ChangeThemeLight}
+                onPress={(() => ChangeTheme("light"))}
                 width={100}
                 height={100}
                 text="Change Theme Light"
@@ -75,7 +86,31 @@ export default function Page1({ navigation })
                 }
             />
             <RPButton
-                onPress={() => ToOtherPage(2)}
+                onPress={(() => SetLanguage("english"))}
+                width={100}
+                height={100}
+                text={LanguageManager.GetLanguageValue("hi")}
+                textStyle={{
+                    textAlign: "center",
+                    textAlignVertical: "center",
+                    fontWeight: "bold",
+                }}
+                buttonStyle={{ borderRadius: 15, }}
+            />
+            <RPButton
+                onPress={(() => SetLanguage("turkish"))}
+                width={100}
+                height={100}
+                text={LanguageManager.GetLanguageValue("hi")}
+                textStyle={{
+                    textAlign: "center",
+                    textAlignVertical: "center",
+                    fontWeight: "bold",
+                }}
+                buttonStyle={{ borderRadius: 15, }}
+            />
+            <RPButton
+                onPress={() => ToPage(2)}
                 width={100}
                 height={100}
                 text="Page2"
@@ -91,7 +126,7 @@ export default function Page1({ navigation })
                 }
             />
             <RPButton
-                onPress={() => ToOtherPage(3)}
+                onPress={() => ToPage(3)}
                 width={100}
                 height={100}
                 text="Page3"

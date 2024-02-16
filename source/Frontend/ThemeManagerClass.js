@@ -59,6 +59,11 @@ class ThemeManagerClass
         ];
     }
 
+    GetThemeName()
+    {
+        return this._currentThemeName;
+    }
+
     SetThemeName(themeName)
     {
         this._currentThemeName = themeName;

@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React from "react";
 
 // My components
-import ThemeManager from "../ThemeManagerClass";
+import ThemeManager from "../Frontend/ThemeManagerClass";
 
 export default function RPButton({ buttonStyle, height, onPress, text, textStyle, width })
 {
