@@ -1,11 +1,11 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { View } from "react-native";
+import { Button, View } from "react-native";
 import React, { useState, useCallback } from "react";
 
 // My components
-import RPButton from "./componets/RPButton";
 import ThemeManager from "./Frontend/ThemeManagerClass";
 import LanguageManager from "./Frontend/LanguageManager";
+import Timer from "./Timer/Timer";
 
 export default function Page1({ navigation })
 {
@@ -25,30 +25,6 @@ export default function Page1({ navigation })
         }
     }, []));
 
-    function ChangeTheme(themeName)
-    {
-        ThemeManager.SetThemeName(themeName);
-        setCurrentTheme(themeName); // Update current theme in state
-    }
-
-    function ToPage(number)
-    {
-        if (number === 2)
-        {
-            navigation.navigate("Page2");
-        }
-        else if (number === 3)
-        {
-            navigation.navigate("Page3");
-        }
-    }
-
-    function SetLanguage(languageName)
-    {
-        LanguageManager.SetLanguageName(languageName);
-        setCurrentLanguage(languageName); // Update current theme in state
-    }
-
     return (
         <View style={{
             alignItems: "center",
@@ -57,90 +33,11 @@ export default function Page1({ navigation })
             height: "100%",
             backgroundColor: ThemeManager.GetColorValue("background"),
         }}>
-            <RPButton
-                onPress={(() => ChangeTheme("dark"))}
-                width={100}
-                height={100}
-                text="Change Theme Dark"
-                textStyle={{
-                    textAlign: "center",
-                    textAlignVertical: "center",
-                    fontWeight: "bold",
-                }}
-                buttonStyle={{ borderRadius: 15, }}
-            />
-            <RPButton
-                onPress={(() => ChangeTheme("light"))}
-                width={100}
-                height={100}
-                text="Change Theme Light"
-                textStyle={{
-                    textAlign: "center",
-                    textAlignVertical: "center",
-                    fontWeight: "bold",
-                }}
-                buttonStyle={
-                    {
-                        borderRadius: 15,
-                    }
-                }
-            />
-            <RPButton
-                onPress={(() => SetLanguage("english"))}
-                width={100}
-                height={100}
-                text={LanguageManager.GetLanguageValue("hi")}
-                textStyle={{
-                    textAlign: "center",
-                    textAlignVertical: "center",
-                    fontWeight: "bold",
-                }}
-                buttonStyle={{ borderRadius: 15, }}
-            />
-            <RPButton
-                onPress={(() => SetLanguage("turkish"))}
-                width={100}
-                height={100}
-                text={LanguageManager.GetLanguageValue("hi")}
-                textStyle={{
-                    textAlign: "center",
-                    textAlignVertical: "center",
-                    fontWeight: "bold",
-                }}
-                buttonStyle={{ borderRadius: 15, }}
-            />
-            <RPButton
-                onPress={() => ToPage(2)}
-                width={100}
-                height={100}
-                text="Page2"
-                textStyle={{
-                    textAlign: "center",
-                    textAlignVertical: "center",
-                    fontWeight: "bold",
-                }}
-                buttonStyle={
-                    {
-                        borderRadius: 15,
-                    }
-                }
-            />
-            <RPButton
-                onPress={() => ToPage(3)}
-                width={100}
-                height={100}
-                text="Page3"
-                textStyle={{
-                    textAlign: "center",
-                    textAlignVertical: "center",
-                    fontWeight: "bold",
-                }}
-                buttonStyle={
-                    {
-                        borderRadius: 15,
-                    }
-                }
-            />
+
+            <View style={{ height: 200, width: 300, marginTop: 10 }} >
+                <Timer />
+            </View>
+
         </View>
     );
 }
