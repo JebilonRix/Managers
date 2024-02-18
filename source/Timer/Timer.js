@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 //My components
 import TimerClass from "./TimerClass";
 
-export default function Timer({ targetTime, mode, getTimerValue })
+export default function Timer({ targetTime, mode })
 {
     const timerRef = useRef(new TimerClass());
     const [isActivateTimer, setIsActivateTimer] = useState(false);
@@ -24,11 +24,8 @@ export default function Timer({ targetTime, mode, getTimerValue })
                     setIsActivateTimer(false);
                 }
 
-                timerRef.current.UpdateTimer(1000);
+                timerRef.current.UpdateTimer(1000); //Update timer value
                 setTimerText(FormatTime(timerRef.current.GetValueOfTimer()));
-
-                // Pass the timer value to the parent component
-                getTimerValue(FormatTime(timerRef.current.GetValueOfTimer()) || "0:00");
 
             }, 1000); // Update this every 1000 miliseconds
         }

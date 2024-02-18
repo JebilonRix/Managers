@@ -1,5 +1,6 @@
 import EventManager from "../manager/EventManager";
 
+// Avaible events getTimerValue and countdownFinished
 export default class TimerClass
 {
     constructor()
@@ -12,6 +13,7 @@ export default class TimerClass
 
     GetValueOfTimer()
     {
+        //Timer.js only
         return this.currentSeconds;
     }
 
@@ -63,10 +65,13 @@ export default class TimerClass
             // Finish check. Change state if target seconds is reached. Target second is 0
             if (this.currentSeconds <= 0)
             {
-                this.ChangeState("finished");
+                this.ChangeState("finished"); // Change state to finished
                 EventManager.InvokeEvent("countdownFinished"); //Event is invoked when countdown is finished
             }
         }
+
+        // Event is invoked when timer value is updated.
+        EventManager.InvokeEvent("getTimerValue", this.currentSeconds / 1000);
     }
 
     GetState()
@@ -83,6 +88,6 @@ export default class TimerClass
             state = "stop";
         }
 
-        this.timerState = state; //Set state.
+        this.timerState = state; //Sets the state.
     }
 }

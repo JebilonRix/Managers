@@ -3,10 +3,10 @@ import { View, Text, Button } from "react-native";
 import React, { useState, useCallback, useEffect } from "react";
 
 // My components
-import ThemeManager from "./Frontend/ThemeManagerClass";
-import LanguageManager from "./Frontend/LanguageManager";
-import Timer from "./Timer/Timer";
 import EventManager from "./manager/EventManager";
+import LanguageManager from "./Frontend/LanguageManager";
+import ThemeManager from "./Frontend/ThemeManagerClass";
+import Timer from "./Timer/Timer";
 
 export default function Page1({ navigation })
 {
@@ -22,11 +22,18 @@ export default function Page1({ navigation })
             setColor("red");
         }
 
+        function Test(value)
+        {
+            setTimerValue(value);
+        }
+
         EventManager.AddEvent("countdownFinished", ChangeColor);
+        EventManager.AddEvent("getTimerValue", Test);
 
         return () =>
         {
             EventManager.RemoveEvent("countdownFinished", ChangeColor);
+            EventManager.RemoveEvent("getTimerValue", Test);
         };
     }, []);
 
@@ -42,11 +49,6 @@ export default function Page1({ navigation })
             setCurrentLanguage(LanguageManager.GetLanguageName());
         }
     }, []));
-
-    function GetTimerValue(value)
-    {
-        setTimerValue(value);
-    }
 
     function ButtonPress()
     {
@@ -71,7 +73,6 @@ export default function Page1({ navigation })
                 <Timer
                     targetTime={5}
                     mode={"timer"}
-                    getTimerValue={GetTimerValue}
                 />
             </View>
 
