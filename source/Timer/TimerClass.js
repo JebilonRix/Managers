@@ -1,3 +1,5 @@
+import EventManager from "../manager/EventManager";
+
 export default class TimerClass
 {
     constructor()
@@ -8,12 +10,17 @@ export default class TimerClass
         this.timerMode = "timer"; //timer, countdown
     }
 
+    GetValueOfTimer()
+    {
+        return this.currentSeconds;
+    }
+
     StartTimer(targetSeconds, timerMode)
     {
         this.targetSeconds = targetSeconds * 1000; // Change seconds to milliseconds
         this.timerMode = timerMode; // Set timer mode
 
-        // Initialize currentSeconds based on timerMode
+        // Initialize currentSeconds based on timerMode. Reset currentSeconds
         this.currentSeconds = (timerMode === "timer") ? 0 : this.targetSeconds;
 
         this.ChangeState("running"); // Change state to running
@@ -21,11 +28,11 @@ export default class TimerClass
 
     PauseTimer(isPause)
     {
-        if (isPause && this.timerState === "running")
+        if (isPause && this.GetState() === "running")
         {
             this.ChangeState("paused"); // Change state to paused
         }
-        else if (!isPause && this.timerState === "paused")
+        else if (!isPause && this.GetState() === "paused")
         {
             this.ChangeState("running"); // Change state to running
         }
@@ -48,12 +55,6 @@ export default class TimerClass
         if (this.timerMode === "timer")
         {
             this.currentSeconds += tick; // Update current time
-
-            // Finish check. Change state if target seconds is reached
-            if (this.currentSeconds >= this.targetSeconds)
-            {
-                this.ChangeState("finished"); // Change state to finished
-            }
         }
         else
         {
@@ -63,6 +64,7 @@ export default class TimerClass
             if (this.currentSeconds <= 0)
             {
                 this.ChangeState("finished");
+                EventManager.InvokeEvent("countdownFinished"); //Event is invoked when countdown is finished
             }
         }
     }
@@ -82,10 +84,5 @@ export default class TimerClass
         }
 
         this.timerState = state; //Set state.
-    }
-
-    GetValueOfTimer()
-    {
-        return this.currentSeconds;
     }
 }

@@ -1,9 +1,10 @@
 import { View, Text, Button } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 
+//My components
 import TimerClass from "./TimerClass";
 
-export default function Timer()
+export default function Timer({ targetTime, mode, getTimerValue })
 {
     const timerRef = useRef(new TimerClass());
     const [isActivateTimer, setIsActivateTimer] = useState(false);
@@ -18,7 +19,6 @@ export default function Timer()
         {
             interval = setInterval(() =>
             {
-                // console.log("🚀 ~ timerRef.current.GetState():", timerRef.current.GetState());
                 if (timerRef.current.GetState() === "finished")
                 {
                     setIsActivateTimer(false);
@@ -26,6 +26,10 @@ export default function Timer()
 
                 timerRef.current.UpdateTimer(1000);
                 setTimerText(FormatTime(timerRef.current.GetValueOfTimer()));
+
+                // Pass the timer value to the parent component
+                getTimerValue(FormatTime(timerRef.current.GetValueOfTimer()) || "0:00");
+
             }, 1000); // Update this every 1000 miliseconds
         }
 
@@ -45,8 +49,9 @@ export default function Timer()
 
     function StartTimer()
     {
+        setTogglePause(false);
         setIsActivateTimer(true);
-        timerRef.current.StartTimer(50, "timer");
+        timerRef.current.StartTimer(targetTime, mode);
     }
 
     function PauseTimer()
@@ -58,6 +63,7 @@ export default function Timer()
 
     function StopTimer()
     {
+        setTogglePause(false);
         setIsActivateTimer(false);
         timerRef.current.StopTimer();
         setTimerText(FormatTime(timerRef.current.GetValueOfTimer()));
